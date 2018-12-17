@@ -1,18 +1,18 @@
 
 ## ======================================================== ##
 # Copyright (C) 2017 Nicholas Canova
-# 
-# This launches the server side code for the 
+#
+# This launches the server side code for the
 # Impressive Performances chart tool
 ## ======================================================== ##
 
 # the logo
 output$ip.logo <- renderImage({
   filename <- 'Images/teamlogos.jpg'
-  
+
   this.width <- session$clientData$output_sc.logo_width
   this.height <- this.width / (1365 / 1024) # the file ratio
-  
+
   # Return a list containing the filename
   list(src = filename,
        width = this.width,
@@ -27,7 +27,7 @@ output$ip.ghostplot <- renderPlot({
 
 # and do the plot
 output$impressiveperformances <- renderPlotly({
-  
+
   window.width <- session$clientData$output_ip.ghostplot_width
   chart.type <- input$ip.chart.input
 
@@ -35,7 +35,7 @@ output$impressiveperformances <- renderPlotly({
 })
 
 # the table counting the performances
-output$ip.table <- renderDataTable({
+output$ip.table <- shiny::renderDataTable({
 
   window.width <- session$clientData$output_ip.ghostplot_width
   chart.type <- input$ip.chart.input
